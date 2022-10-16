@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter101/reusable_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'constants.dart';
 import 'icon_content.dart';
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        fontFamily: "Nunito",
         textTheme: const TextTheme(
           bodyText2: TextStyle(color: Colors.white),
         ),
@@ -45,12 +47,15 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   Gender? selectedGender;
   int height = 180;
+  int weight = 60;
+  int age = 22;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('BMI CALCULATOR', style: kMyFontStyle),
+        centerTitle: true,
+        title: const Text('BMI CALCULATOR'),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -140,22 +145,64 @@ class _HomePageState extends State<HomePage> {
               onPress: () {},
             ),
           ),
-          /*Expanded(
+          Expanded(
             child: Row(
-              children: const <Widget>[
+              children: <Widget>[
                 Expanded(
                   child: ReusableCard(
-                    colour: activeCardColor,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        const Text(
+                          'Weight',
+                          style: kLabelTextStyle,
+                        ),
+                        Text(
+                          weight.toString(),
+                          style: kNumberTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(),
+                            const SizedBox(
+                              width: 10.0,
+                            ),
+                            FloatingActionButton(
+                              backgroundColor: const Color(0xFF4C4F5E),
+                              child: Icon(Icons.add),
+                              onPressed: () {},
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                    colour: kActiveCardColor,
+                    onPress: () {},
                   ),
                 ),
                 Expanded(
                   child: ReusableCard(
-                    colour: activeCardColor,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        const Text(
+                          'Age',
+                          style: kLabelTextStyle,
+                        ),
+                        Text(
+                          age.toString(),
+                          style: kNumberTextStyle,
+                        ),
+                      ],
+                    ),
+                    colour: kActiveCardColor,
+                    onPress: () {},
                   ),
                 )
               ],
             ),
-          ),*/
+          ),
           Container(
             color: kBottomContainerColor,
             margin: const EdgeInsets.only(top: 10.0),
@@ -164,6 +211,24 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       ),
+    );
+  }
+}
+
+class RoundIconButton extends StatelessWidget {
+  const RoundIconButton({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      elevation: 6.0,
+      shape: const CircleBorder(),
+      fillColor: const Color(0xFF4C4F5E),
+      constraints: const BoxConstraints.tightFor(
+        width: 56.0,
+        height: 56.0,
+      ),
+      onPressed: () {},
     );
   }
 }

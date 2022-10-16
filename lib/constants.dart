@@ -10,4 +10,3 @@ const kNumberTextStyle = TextStyle(
   fontSize: 50,
   fontWeight: FontWeight.w900,
 );
-var kMyFontStyle = GoogleFonts.nunito();
