@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter101/reusable_card.dart';
+import 'package:flutter101/screens/results_page.dart';
+import 'package:flutter101/widgets/reusable_card.dart';
+import 'package:flutter101/widgets/square_icon_button.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'widgets/bottom_button.dart';
 import 'constants.dart';
-import 'icon_content.dart';
+import 'widgets/icon_content.dart';
 
 enum Gender {
   male,
@@ -24,7 +27,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: "Nunito",
-
         textTheme: const TextTheme(
           bodyText2: TextStyle(color: Colors.white),
         ),
@@ -165,19 +167,25 @@ class _HomePageState extends State<HomePage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            RoundIconButton(icon: FontAwesomeIcons.minus, onPressed: (){
-                              setState(() {
-                                weight--;
-                              });
-                            },),
+                            SquareIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPressed: () {
+                                setState(() {
+                                  weight--;
+                                });
+                              },
+                            ),
                             const SizedBox(
                               width: 10.0,
                             ),
-                            RoundIconButton(icon: FontAwesomeIcons.plus, onPressed: (){
-                              setState(() {
-                                weight++;
-                              });
-                            },),
+                            SquareIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onPressed: () {
+                                setState(() {
+                                  weight++;
+                                });
+                              },
+                            ),
                           ],
                         )
                       ],
@@ -202,19 +210,25 @@ class _HomePageState extends State<HomePage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            RoundIconButton(icon: FontAwesomeIcons.minus, onPressed: (){
-                              setState(() {
-                                age--;
-                              });
-                            },),
+                            SquareIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPressed: () {
+                                setState(() {
+                                  age--;
+                                });
+                              },
+                            ),
                             const SizedBox(
                               width: 10.0,
                             ),
-                            RoundIconButton(icon: FontAwesomeIcons.plus, onPressed: (){
-                              setState(() {
-                                age++;
-                              });
-                            },),
+                            SquareIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onPressed: () {
+                                setState(() {
+                                  age++;
+                                });
+                              },
+                            ),
                           ],
                         )
                       ],
@@ -226,36 +240,19 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          Container(
-            color: kBottomContainerColor,
-            margin: const EdgeInsets.only(top: 10.0),
-            width: double.infinity,
-            height: kBottomContainerHeight,
+          BottomButton(
+            buttonTitle: 'Calculate',
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ResultsPage(),
+                ),
+              );
+            },
           )
         ],
       ),
-    );
-  }
-}
-
-class RoundIconButton extends StatelessWidget {
-  const RoundIconButton({Key? key, required this.icon, required this.onPressed}) : super(key: key);
-
-  final IconData icon;
-  final VoidCallback onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      child: Icon(icon, color: Colors.white),
-      elevation: 6.0,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-      fillColor: const Color(0xFF4C4F5E),
-      constraints: const BoxConstraints.tightFor(
-        width: 56.0,
-        height: 56.0,
-      ),
-      onPressed: onPressed,
     );
   }
 }
