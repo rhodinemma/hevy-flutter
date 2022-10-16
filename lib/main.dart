@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: "Nunito",
+
         textTheme: const TextTheme(
           bodyText2: TextStyle(color: Colors.white),
         ),
@@ -163,16 +164,20 @@ class _HomePageState extends State<HomePage> {
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            RoundIconButton(),
+                          children: <Widget>[
+                            RoundIconButton(icon: FontAwesomeIcons.minus, onPressed: (){
+                              setState(() {
+                                weight--;
+                              });
+                            },),
                             const SizedBox(
                               width: 10.0,
                             ),
-                            FloatingActionButton(
-                              backgroundColor: const Color(0xFF4C4F5E),
-                              child: Icon(Icons.add),
-                              onPressed: () {},
-                            ),
+                            RoundIconButton(icon: FontAwesomeIcons.plus, onPressed: (){
+                              setState(() {
+                                weight++;
+                              });
+                            },),
                           ],
                         )
                       ],
@@ -194,6 +199,24 @@ class _HomePageState extends State<HomePage> {
                           age.toString(),
                           style: kNumberTextStyle,
                         ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            RoundIconButton(icon: FontAwesomeIcons.minus, onPressed: (){
+                              setState(() {
+                                age--;
+                              });
+                            },),
+                            const SizedBox(
+                              width: 10.0,
+                            ),
+                            RoundIconButton(icon: FontAwesomeIcons.plus, onPressed: (){
+                              setState(() {
+                                age++;
+                              });
+                            },),
+                          ],
+                        )
                       ],
                     ),
                     colour: kActiveCardColor,
@@ -216,19 +239,23 @@ class _HomePageState extends State<HomePage> {
 }
 
 class RoundIconButton extends StatelessWidget {
-  const RoundIconButton({Key? key}) : super(key: key);
+  const RoundIconButton({Key? key, required this.icon, required this.onPressed}) : super(key: key);
+
+  final IconData icon;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
     return RawMaterialButton(
+      child: Icon(icon, color: Colors.white),
       elevation: 6.0,
-      shape: const CircleBorder(),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       fillColor: const Color(0xFF4C4F5E),
       constraints: const BoxConstraints.tightFor(
         width: 56.0,
         height: 56.0,
       ),
-      onPressed: () {},
+      onPressed: onPressed,
     );
   }
 }
