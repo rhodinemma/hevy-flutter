@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+const bottomContainerHeight = 80.0;
+
 void main() {
   runApp(const MyApp());
 }
@@ -58,6 +60,12 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
+          Container(
+            color: const Color(0xFFEB1555),
+            margin: const EdgeInsets.only(top: 10.0),
+            width: double.infinity,
+            height: bottomContainerHeight,
+          )
         ],
       ),
     );
