@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+var myFontStyle = GoogleFonts.nunito();
 
 const labelTextStyle = TextStyle(
     fontSize: 18.0,
