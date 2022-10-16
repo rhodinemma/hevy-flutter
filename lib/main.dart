@@ -44,52 +44,40 @@ class _HomePageState extends State<HomePage> {
         children: <Widget>[
           Expanded(
               child: Row(
-            children: <Widget>[
-              Expanded(
-                  child: Container(
-                margin: const EdgeInsets.all(15.0),
-                decoration: BoxDecoration(
-                    color: const Color(0xFF1D1E33),
-                    borderRadius: BorderRadius.circular(10.0)),
-              )),
-              Expanded(
-                  child: Container(
-                margin: const EdgeInsets.all(15.0),
-                decoration: BoxDecoration(
-                    color: const Color(0xFF1D1E33),
-                    borderRadius: BorderRadius.circular(10.0)),
-              ))
+            children: const <Widget>[
+              Expanded(child: ReusableCard(colour: Color(0xFF1D1E33),)),
+              Expanded(child: ReusableCard(colour: Color(0xFF1D1E33),))
             ],
           )),
-          Expanded(
-              child: Container(
-            margin: const EdgeInsets.all(15.0),
-            decoration: BoxDecoration(
-                color: const Color(0xFF1D1E33),
-                borderRadius: BorderRadius.circular(10.0)),
-          )),
+          const Expanded(child: ReusableCard(colour: Color(0xFF1D1E33),)),
           Expanded(
             child: Row(
-              children: <Widget>[
-                Expanded(
-                    child: Container(
-                  margin: const EdgeInsets.all(15.0),
-                  decoration: BoxDecoration(
-                      color: const Color(0xFF1D1E33),
-                      borderRadius: BorderRadius.circular(10.0)),
-                )),
-                Expanded(
-                    child: Container(
-                  margin: const EdgeInsets.all(15.0),
-                  decoration: BoxDecoration(
-                      color: const Color(0xFF1D1E33),
-                      borderRadius: BorderRadius.circular(10.0)),
-                ))
+              children: const <Widget>[
+                Expanded(child: ReusableCard(colour: Color(0xFF1D1E33),)),
+                Expanded(child: ReusableCard(colour: Color(0xFF1D1E33),))
               ],
             ),
           ),
         ],
       ),
+    );
+  }
+}
+
+class ReusableCard extends StatelessWidget {
+  final Color colour;
+
+  const ReusableCard({
+    Key? key, required this.colour
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.all(15.0),
+      decoration: BoxDecoration(
+          color: colour,
+          borderRadius: BorderRadius.circular(10.0)),
     );
   }
 }
