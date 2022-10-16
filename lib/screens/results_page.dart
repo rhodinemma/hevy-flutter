@@ -16,8 +16,10 @@ class ResultsPage extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          const Expanded(
-            child: Text('Your result', style: kTitleTextStyle),
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.all(25.0),
+                child: const Text('Your result', style: kTitleTextStyle)),
           ),
           Expanded(
             flex: 5,
